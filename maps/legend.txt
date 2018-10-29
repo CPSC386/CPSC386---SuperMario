@@ -1,0 +1,14 @@
+X = blank space
+B = breakable brick
+F = floor
+? = ? block
+M = mushroom in ? block
+* = star in ? block
+C = coin
+P = pipe
+| = flag
+U = unbreakable block
+
+G = goomba
+K = koopa
+: = mario
