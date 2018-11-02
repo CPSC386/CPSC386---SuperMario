@@ -3,10 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="15300f25-16d9-4ab5-95b4-c27c14a9b6bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../venv/buildMap.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/buildMap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../venv/floor.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/floor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../venv/gameFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/gameFunctions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../venv/mushroomBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/mushroomBlock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../venv/questionBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/questionBlock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../venv/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../venv/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +57,7 @@
     <session id="-1784578220">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -247,7 +251,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32805908" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32805908" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

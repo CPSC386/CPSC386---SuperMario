@@ -4,6 +4,7 @@ from brick import Brick
 from questionBlock import QuestionBlock
 from mushroomBlock import MushroomBlock
 
+
 class BuildMap():
     def __init__(self, screen, settings):
         self.screen, self.settings = screen, settings
@@ -73,4 +74,3 @@ class BuildMap():
 
     def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks):
         worldShift = 0
-        

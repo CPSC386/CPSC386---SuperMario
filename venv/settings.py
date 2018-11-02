@@ -1,4 +1,4 @@
-class Settings():
+class Settings:
     def __init__(self):
         self.playerSpeed = 2
         self.screenWidth = 1280

@@ -1,5 +1,6 @@
 import pygame
 
+
 def checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -8,6 +9,7 @@ def checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks):
             checkDown(event, map, floors, bricks, questionBlocks, mushroomBlocks)
         elif event.type == pygame.KEYUP:
             checkUp(event)
+
 
 def checkDown(event, map, floors, bricks, questionBlocks, mushroomBlocks):
     if event.key == pygame.K_RIGHT:
