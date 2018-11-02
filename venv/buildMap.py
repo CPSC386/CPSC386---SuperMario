@@ -1,4 +1,9 @@
 import pygame
+from floor import Floor
+from brick import Brick
+from questionBlock import QuestionBlock
+from mushroomBlock import MushroomBlock
+
 
 class BuildMap():
     def __init__(self, screen, settings):
@@ -21,20 +26,20 @@ class BuildMap():
                 self.lines.append(self.line)
                 self.line = ""
 
-    def makeMap(self, floors, bricks, questionblocks):
+    def makeMap(self, floors, bricks, questionBlocks, mushroomBlocks):
         size = self.settings.rectSize
         for row in self.lines:
             for chars in row:
                 #  Floor
                 if chars == "F":
-                    newFloor = Floor(self.screen)
-                    newFloor.rect.x, newBlock.rect.y = self.xShift, self.yShift
+                    newFloor = Floor(self.screen, self.settings)
+                    newFloor.rect.x, newFloor.rect.y = self.xShift, self.yShift
                     self.xShift += size
                     floors.add(newFloor)
                 #  Breakable brick
                 elif chars == "B":
                     newBrick = Brick(self.screen, self.settings)
-                    newBrick.rect.x, newDot.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
                     bricks.add(newBrick)
                 #  Blank space
@@ -43,16 +48,29 @@ class BuildMap():
                 #  ? block
                 elif chars == "?":
                     newQuestion = QuestionBlock(self.screen, self.settings)
-                    newQuestion.rect.x, newPill.rect.y = self.xShift + size / 4, self.yShift + size / 4
-                    questionblocks.add(newQuestion)
+                    newQuestion.rect.x, newQuestion.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    questionBlocks.add(newQuestion)
                     self.xShift += size
+                #  Mushroom blocks (look like ? blocks):
+                elif chars == "M":
+                    newMushroom = MushroomBlock(self.screen, self.settings)
+                    newMushroom.rect.x, newMushroom.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    mushroomBlocks.add(newMushroom)
+                    self.xShift += size
+
             self.xShift = 0
             self.yShift += size
+        print("Done.")
 
-    def drawMap(self, floors, bricks, questionblocks):
+    def drawMap(self, floors, bricks, questionBlocks, mushroomBlocks):
         for floor in floors:
-            floor.draw()
+            floor.blit()
         for brick in bricks:
             brick.blit()
-        for questionblock in questionblocks:
-            questionblock.blit()
+        for questionBlock in questionBlocks:
+            questionBlock.blit()
+        for mushroomBlock in mushroomBlocks:
+            mushroomBlock.blit()
+
+    def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks):
+        worldShift = 0
