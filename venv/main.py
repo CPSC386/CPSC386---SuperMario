@@ -25,7 +25,7 @@ def runGame():
     pygame.mixer.init()
 
     while True:
-        gf.checkEvents()
+        gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks)
         screen.fill((0, 0, 0))
         map.drawMap(floors, bricks, questionBlocks, mushroomBlocks)
 

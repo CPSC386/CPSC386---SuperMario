@@ -13,7 +13,6 @@ class BuildMap():
         self.lines = []
         self.xShift = 0
         self.yShift = 35
-        self.worldShift = 0
 
         if self.file.mode == "r":
             self.contents = self.file.read()
@@ -72,4 +71,6 @@ class BuildMap():
         for mushroomBlock in mushroomBlocks:
             mushroomBlock.blit()
 
-
+    def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks):
+        worldShift = 0
+        
