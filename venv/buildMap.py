@@ -72,5 +72,13 @@ class BuildMap():
         for mushroomBlock in mushroomBlocks:
             mushroomBlock.blit()
 
-    def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks):
+    def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks, settings):
         worldShift = 0
+        for floor in floors:
+            floor.rect.x -= 1
+        for brick in bricks:
+            brick.rect.x -= 1
+        for questionBlock in questionBlocks:
+            questionBlock.rect.x -= 1
+        for mushroomBlock in mushroomBlocks:
+            mushroomBlock.rect.x -= 1

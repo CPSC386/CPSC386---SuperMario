@@ -5,3 +5,5 @@ class Settings:
         self.screenHeight = 720
 
         self.rectSize = 40
+
+        self.moving_right = False

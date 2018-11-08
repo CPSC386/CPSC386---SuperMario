@@ -1,22 +1,22 @@
 import pygame
+import sys
 
 
-def checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks):
+def checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            checkDown(event, map, floors, bricks, questionBlocks, mushroomBlocks)
+            checkDown(event, map, floors, bricks, questionBlocks, mushroomBlocks, settings)
         elif event.type == pygame.KEYUP:
-            checkUp(event)
+            checkUp(event, settings)
 
 
-def checkDown(event, map, floors, bricks, questionBlocks, mushroomBlocks):
+def checkDown(event, map, floors, bricks, questionBlocks, mushroomBlocks, settings):
     if event.key == pygame.K_RIGHT:
-        print("right")
-        map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks)
+        settings.moving_right = True
 
 
-def checkUp(event):
+def checkUp(event, settings):
     if event.key == pygame.K_RIGHT:
-        print(".")
+        settings.moving_right = False
