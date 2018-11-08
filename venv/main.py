@@ -19,16 +19,18 @@ def runGame():
     bricks = Group()
     questionBlocks = Group()
     mushroomBlocks = Group()
+    unbreakableBricks = Group()
+    pipes = Group()
 
-    map.makeMap(floors, bricks, questionBlocks, mushroomBlocks)
+    map.makeMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
 
     pygame.mixer.init()
 
     while True:
         gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings)
-        map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, settings)
+        map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings)
         screen.fill((0, 0, 0))
-        map.drawMap(floors, bricks, questionBlocks, mushroomBlocks)
+        map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
 
         pygame.display.flip()
 

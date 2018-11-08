@@ -3,6 +3,8 @@ from floor import Floor
 from brick import Brick
 from questionBlock import QuestionBlock
 from mushroomBlock import MushroomBlock
+from unbreakableBrick import UnbreakableBrick
+from pipe import Pipe
 
 
 class BuildMap():
@@ -26,7 +28,7 @@ class BuildMap():
                 self.lines.append(self.line)
                 self.line = ""
 
-    def makeMap(self, floors, bricks, questionBlocks, mushroomBlocks):
+    def makeMap(self, floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes):
         size = self.settings.rectSize
         for row in self.lines:
             for chars in row:
@@ -42,6 +44,18 @@ class BuildMap():
                     newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
                     bricks.add(newBrick)
+                #  Unbreakable brick
+                elif chars == "U":
+                    newUB = UnbreakableBrick(self.screen, self.settings)
+                    newUB.rect.x, newUB.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    self.xShift += size
+                    unbreakableBricks.add(newUB)
+                #  Pipe
+                elif chars == "P":
+                    newPipe = Pipe(self.screen, self.settings)
+                    newPipe.rect.x, newPipe.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    self.xShift += size
+                    pipes.add(newPipe)
                 #  Blank space
                 elif chars == "X":
                     self.xShift += size
@@ -62,7 +76,7 @@ class BuildMap():
             self.yShift += size
         print("Done.")
 
-    def drawMap(self, floors, bricks, questionBlocks, mushroomBlocks):
+    def drawMap(self, floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes):
         for floor in floors:
             floor.blit()
         for brick in bricks:
@@ -71,14 +85,23 @@ class BuildMap():
             questionBlock.blit()
         for mushroomBlock in mushroomBlocks:
             mushroomBlock.blit()
+        for unbreakableBrick in unbreakableBricks:
+           unbreakableBrick.blit()
+        for pipe in pipes:
+            pipe.blit()
 
-    def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks, settings):
+    def shiftMap(self, floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings):
         worldShift = 0
-        for floor in floors:
-            floor.rect.x -= 1
-        for brick in bricks:
-            brick.rect.x -= 1
-        for questionBlock in questionBlocks:
-            questionBlock.rect.x -= 1
-        for mushroomBlock in mushroomBlocks:
-            mushroomBlock.rect.x -= 1
+        if settings.moving_right == True:
+            for floor in floors:
+                floor.rect.x -= 1
+            for brick in bricks:
+                brick.rect.x -= 1
+            for questionBlock in questionBlocks:
+                questionBlock.rect.x -= 1
+            for mushroomBlock in mushroomBlocks:
+                mushroomBlock.rect.x -= 1
+            for unbreakableBrick in unbreakableBricks:
+                unbreakableBrick.rect.x -= 1
+            for pipe in pipes:
+                pipe.rect.x -= 1
