@@ -9,6 +9,7 @@ class Mario:
 
         self.movementLeft = False
         self.movementRight = False
+        self.movementUp = False
 
         self.collideRight = False
         self.collideLeft = False
@@ -23,13 +24,23 @@ class Mario:
         self.x, self.y = 100, self.settings.screenHeight - self.rect.bottom - 200
         self.rect.x, self.rect.y = self.x, self.y
 
-    def updatePlayer(self):
-        if self.collideBottom == False:
-            self.y += self.settings.playerSpeed * 2
+    def updatePlayer(self, mario, questionBlocks):
+        # if self.collideBottom == False:
+            # self.y += self.settings.playerSpeed * 2
+        if pygame.sprite.spritecollideany(mario, questionBlocks):
+            print("collide")
+            self.movementUp = False
+
         if self.movementLeft == True and self.collideLeft == False: # If left arrow key is pressed and not touching block to the left
             self.x -= self.settings.playerSpeed
         if self.movementRight == True and self.collideRight == False:# If right arrow key is pressed and not touching block to the right
             self.x += self.settings.playerSpeed
+        if self.movementUp and not self.collideTop:
+            self.y -= self.settings.playerSpeed * 2
+        if not self.movementUp and self.y <= 500:
+            self.y += self.settings.playerSpeed * 2
+
+
 
         self.rect.x, self.rect.y = self.x, self.y
 

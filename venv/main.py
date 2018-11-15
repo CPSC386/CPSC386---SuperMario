@@ -36,20 +36,20 @@ def runGame():
     unbreakableBricks = Group()
     pipes = Group()
 
- #   map.makeMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-    map.makeMap(floors, blocks, pipes)
+    map.makeMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
+    # map.makeMap(floors, blocks, pipes)
     pygame.mixer.init()
 
     while True:
         if stats.game_active:
             screen.fill((100, 100, 200))
-            gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start)
-#            map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings)
-            map.shiftMap(floors, blocks, pipes, settings)
-#            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-            map.drawMap(floors, blocks, pipes)
+            gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start, mario)
+            map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings)
+            # map.shiftMap(floors, blocks, pipes, settings)
+            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
+            # map.drawMap(floors, blocks, pipes)
 
-
+            mario.updatePlayer(mario, questionBlocks)
             mario.drawPlayer()
             for block in testBlocks: # testing Diverse Block
                 block.blit()
@@ -57,10 +57,10 @@ def runGame():
             pygame.display.flip()
         else:
             start.blit()
-#            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-            map.drawMap(floors, blocks, pipes)
+            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
+            # map.drawMap(floors, blocks, pipes)
 
-            gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start)
+            gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start, mario)
             pygame.display.flip()
 
 
