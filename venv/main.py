@@ -35,9 +35,10 @@ def runGame():
     mushroomBlocks = Group()
     unbreakableBricks = Group()
     pipes = Group()
+    goombas = Group()
 
  #   map.makeMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-    map.makeMap(floors, blocks, pipes)
+    map.makeMap(floors, blocks, pipes, goombas)
     pygame.mixer.init()
 
     while True:
@@ -45,9 +46,11 @@ def runGame():
             screen.fill((100, 100, 200))
             gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start)
 #            map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings)
-            map.shiftMap(floors, blocks, pipes, settings)
+            map.shiftMap(floors, blocks, pipes, settings, goombas)
 #            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-            map.drawMap(floors, blocks, pipes)
+            map.drawMap(floors, blocks, pipes, goombas)
+            gf.updateGoombas(goombas)
+
 
 
             mario.drawPlayer()
@@ -58,7 +61,7 @@ def runGame():
         else:
             start.blit()
 #            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-            map.drawMap(floors, blocks, pipes)
+            map.drawMap(floors, blocks, pipes, goombas)
 
             gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start)
             pygame.display.flip()

@@ -31,3 +31,6 @@ def check_buttons(stats, start, mouse_x, mouse_y):
         pygame.mouse.set_visible(False)
         stats.game_active = True
     # if start.hs_image_rect.collidepoint(mouse_x, mouse_y):
+
+def updateGoombas(goombas):
+    goombas.update()
