@@ -6,6 +6,7 @@ from questionBlock import QuestionBlock
 from mushroomBlock import MushroomBlock
 from unbreakableBrick import UnbreakableBrick
 from pipe import Pipe
+from goomba import Goomba
 
 
 class BuildMap():
@@ -111,7 +112,7 @@ class BuildMap():
 # TESTING DIVERSE BLOCK -----------------------------------------------------------------------------------------
 
 
-    def makeMap(self, floors, blocks, pipes):
+    def makeMap(self, floors, blocks, pipes, goombas, invis):
         size = self.settings.rectSize
         for row in self.lines:
             for chars in row:
@@ -154,20 +155,37 @@ class BuildMap():
                     newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
                     blocks.add(newBrick)
+                #  Invisible walls
+                elif chars == "I":
+                    newInvis = Block(self.screen, self.settings, 8, 0, 1)
+                    newInvis.rect.x, newInvis.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    self.xShift += size
+                    invis.add(newInvis)
+
+                #  Goombas
+                elif chars == "G":
+                    newGoomba = Goomba(self.screen, self.settings)
+                    newGoomba.rect.x, newGoomba.rect.y = self.xShift + size / 4, self.yShift - size / 10
+                    self.xShift += size
+                    goombas.add(newGoomba)
 
             self.xShift = 0
             self.yShift += size
         print("Done.")
 
-    def drawMap(self, floors, blocks, pipes):
+    def drawMap(self, floors, blocks, pipes, goombas, invisG):
         for floor in floors:
             floor.blit()
         for block in blocks:
             block.blit()
         for pipe in pipes:
             pipe.blit()
+        for goomba in goombas:
+            goomba.drawGoomba()
+        for invis in invisG:
+            invis.blit()
 
-    def shiftMap(self, floors, blocks, pipes, settings):
+    def shiftMap(self, floors, blocks, pipes, settings, goombas, invisG):
         worldShift = 0
         if settings.moving_right == True:
             for floor in floors:
@@ -176,3 +194,7 @@ class BuildMap():
                 block.rect.x -= 1
             for pipe in pipes:
                 pipe.rect.x -= 1
+            for goomba in goombas:
+                goomba.rect.x -= 1
+            for invis in invisG:
+                invis.rect.x -= 1

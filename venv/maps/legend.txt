@@ -12,3 +12,5 @@ U = unbreakable block
 G = goomba
 K = koopa
 : = mario
+
+I = invisible wall

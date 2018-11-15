@@ -26,6 +26,9 @@ class Block(Sprite): # item will default to -1 and quantity will default to 0 if
             self.image = pygame.image.load("images/1-1/surprise brick.png")
         elif skin == 7:
             self.image = pygame.image.load("images/1-2/surprise brick.png")
+        elif skin == 8:
+            self.image = pygame.image.load("images/1-1/unbreakable brick.png")
+
 
         self.image = pygame.transform.scale(self.image, (settings.rectSize, settings.rectSize))
         self.rect = self.image.get_rect()
