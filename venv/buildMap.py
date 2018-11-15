@@ -7,7 +7,7 @@ from mushroomBlock import MushroomBlock
 from unbreakableBrick import UnbreakableBrick
 from pipe import Pipe
 from goomba import Goomba
-
+from koopa import Koopa
 
 class BuildMap():
     def __init__(self, screen, settings):
@@ -112,7 +112,7 @@ class BuildMap():
 # TESTING DIVERSE BLOCK -----------------------------------------------------------------------------------------
 
 
-    def makeMap(self, floors, blocks, pipes, goombas, invis):
+    def makeMap(self, floors, blocks, pipes, goombas, invis, koopa):
         size = self.settings.rectSize
         for row in self.lines:
             for chars in row:
@@ -168,12 +168,17 @@ class BuildMap():
                     newGoomba.rect.x, newGoomba.rect.y = self.xShift + size / 4, self.yShift - size / 10
                     self.xShift += size
                     goombas.add(newGoomba)
+                elif chars == "K":
+                    newKoopa = Koopa(self.screen, self.settings)
+                    newKoopa.rect.x, newKoopa.rect.y = self.xShift + size / 4, self.yShift - size / 10
+                    self.xShift += size
+                    koopa.add(newKoopa)
 
             self.xShift = 0
             self.yShift += size
         print("Done.")
 
-    def drawMap(self, floors, blocks, pipes, goombas, invisG):
+    def drawMap(self, floors, blocks, pipes, goombas, invisG, koopas):
         for floor in floors:
             floor.blit()
         for block in blocks:
@@ -182,10 +187,12 @@ class BuildMap():
             pipe.blit()
         for goomba in goombas:
             goomba.drawGoomba()
+        for koopa in koopas:
+            koopa.drawKoopa()
         for invis in invisG:
             invis.blit()
 
-    def shiftMap(self, floors, blocks, pipes, settings, goombas, invisG):
+    def shiftMap(self, floors, blocks, pipes, settings, goombas, invisG, koopas):
         worldShift = 0
         if settings.moving_right == True:
             for floor in floors:
@@ -196,5 +203,7 @@ class BuildMap():
                 pipe.rect.x -= 1
             for goomba in goombas:
                 goomba.rect.x -= 1
+            for koopa in koopas:
+                koopa.rect.x -= 1
             for invis in invisG:
                 invis.rect.x -= 1

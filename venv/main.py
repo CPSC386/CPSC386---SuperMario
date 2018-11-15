@@ -33,13 +33,14 @@ def runGame():
     bricks = Group()
     questionBlocks = Group()
     mushroomBlocks = Group()
-    unbreakableBricks = Group()
+ #  unbreakableBricks = Group()
     pipes = Group()
     goombas = Group()
     invisG = Group()
+    koopas = Group()
 
- #   map.makeMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-    map.makeMap(floors, blocks, pipes, goombas, invisG)
+ #  map.makeMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
+    map.makeMap(floors, blocks, pipes, goombas, invisG, koopas)
     pygame.mixer.init()
 
     while True:
@@ -47,10 +48,10 @@ def runGame():
             screen.fill((100, 100, 200))
             gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start)
 #            map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings)
-            map.shiftMap(floors, blocks, pipes, settings, goombas, invisG)
+            map.shiftMap(floors, blocks, pipes, settings, goombas, invisG, koopas)
 #            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-            map.drawMap(floors, blocks, pipes, goombas, invisG)
-            gf.updateGoombas(goombas, pipes, invisG)
+            map.drawMap(floors, blocks, pipes, goombas, invisG, koopas)
+            gf.updateEnemies(goombas, koopas, pipes, invisG)
 
 
 
@@ -62,7 +63,7 @@ def runGame():
         else:
             start.blit()
 #            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
-            map.drawMap(floors, blocks, pipes, goombas, invisG)
+            map.drawMap(floors, blocks, pipes, goombas, invisG, koopas)
 
             gf.checkEvents(map, floors, bricks, questionBlocks, mushroomBlocks, settings, stats, start)
             pygame.display.flip()
