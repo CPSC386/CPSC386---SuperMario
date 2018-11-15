@@ -7,7 +7,6 @@ from mushroomBlock import MushroomBlock
 from unbreakableBrick import UnbreakableBrick
 from pipe import Pipe
 from goomba import Goomba
-from invis import Invis
 
 
 class BuildMap():
@@ -158,7 +157,7 @@ class BuildMap():
                     blocks.add(newBrick)
                 #  Invisible walls
                 elif chars == "I":
-                    newInvis = Invis(self.screen, self.settings)
+                    newInvis = Block(self.screen, self.settings, 8, 0, 1)
                     newInvis.rect.x, newInvis.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
                     invis.add(newInvis)
