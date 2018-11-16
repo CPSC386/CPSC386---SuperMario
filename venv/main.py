@@ -7,6 +7,7 @@ from game_stats import GameStats
 from start_screen import StartScreen
 from mario import Mario
 from block import Block  # TESTING DIVERSE BLOCK
+from scoreboard import Scoreboard
 import gameFunctions as Gf
 
 
@@ -21,6 +22,7 @@ def run_game():
     stats = GameStats()
     start = StartScreen(screen)
     mario = Mario(screen, settings)
+    sb = Scoreboard(settings, screen, stats, start)
 
     test_blocks = []
     blocks = Group()
@@ -47,25 +49,30 @@ def run_game():
         if stats.game_active:
             screen.fill((100, 100, 200))
             # Gf.check_events(map, floors, bricks, question_blocks, mushroom_blocks, settings, stats, start)
-            Gf.check_events(settings, stats, start)
+            Gf.check_events(settings, stats, start, sb)
 #            map.shiftMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes, settings)
             map.shift_map(floors, blocks, pipes, settings, goombas, invis_g, koopas)
 #            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
             map.draw_map(floors, blocks, pipes, goombas, invis_g, koopas)
             Gf.update_enemies(goombas, koopas, pipes, invis_g)
+            sb.show_score()
 
             mario.draw_player()
             for block in test_blocks:  # testing Diverse Block
                 block.blit()
 
             pygame.display.flip()
+        elif stats.show_hs:
+            sb.show_hs()
+            Gf.check_events(settings, stats, start, sb)
         else:
             start.blit()
 #            map.drawMap(floors, bricks, questionBlocks, mushroomBlocks, unbreakableBricks, pipes)
             map.draw_map(floors, blocks, pipes, goombas, invis_g, koopas)
 
             # Gf.check_events(map, floors, bricks, question_blocks, mushroom_blocks, settings, stats, start)
-            Gf.check_events(settings, stats, start)
+            Gf.check_events(settings, stats, start, sb)
+            sb.show_score()
             pygame.display.flip()
 
 
