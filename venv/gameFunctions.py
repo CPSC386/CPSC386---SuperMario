@@ -30,6 +30,8 @@ def check_buttons(stats, start, mouse_x, mouse_y):
     if start.play_image_rect.collidepoint(mouse_x, mouse_y):
         pygame.mouse.set_visible(False)
         stats.game_active = True
+        pygame.mixer.music.load('sounds/smb_theme.mp3')
+        pygame.mixer.music.play(0)
     # if start.hs_image_rect.collidepoint(mouse_x, mouse_y):
 
 def updateEnemies(goombas, koopas, pipes, invisG):
