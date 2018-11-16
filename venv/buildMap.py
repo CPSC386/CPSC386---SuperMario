@@ -1,7 +1,7 @@
 import pygame
 from floor import Floor
 from brick import Brick
-from block import Block # testing Diverse Block
+from block import Block  # testing Diverse Block
 from questionBlock import QuestionBlock
 from mushroomBlock import MushroomBlock
 from unbreakableBrick import UnbreakableBrick
@@ -9,7 +9,8 @@ from pipe import Pipe
 from goomba import Goomba
 from koopa import Koopa
 
-class BuildMap():
+
+class BuildMap:
     def __init__(self, screen, settings):
         self.screen, self.settings = screen, settings
         self.file = open("maps/level1.txt", "r")
@@ -111,74 +112,74 @@ class BuildMap():
 
 # TESTING DIVERSE BLOCK -----------------------------------------------------------------------------------------
 
-
-    def makeMap(self, floors, blocks, pipes, goombas, invis, koopa):
+    def make_map(self, floors, blocks, pipes, goombas, invis, koopa):
         size = self.settings.rectSize
         for row in self.lines:
             for chars in row:
                 #  Floor
                 if chars == "F":
-                    newFloor = Floor(self.screen, self.settings)
-                    newFloor.rect.x, newFloor.rect.y = self.xShift, self.yShift
+                    new_floor = Floor(self.screen, self.settings)
+                    new_floor.rect.x, new_floor.rect.y = self.xShift, self.yShift
                     self.xShift += size
-                    floors.add(newFloor)
+                    floors.add(new_floor)
                 #  Breakable brick
                 elif chars == "B":
-                    newBrick = Block(self.screen, self.settings, 4)
-                    newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    new_brick = Block(self.screen, self.settings, 4)
+                    new_brick.rect.x, new_brick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
-                    blocks.add(newBrick)
+                    blocks.add(new_brick)
                 #  Unbreakable brick
                 elif chars == "U":
-                    newBrick = Block(self.screen, self.settings, 0)
-                    newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    new_brick = Block(self.screen, self.settings, 0)
+                    new_brick.rect.x, new_brick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
-                    blocks.add(newBrick)
+                    blocks.add(new_brick)
                 #  Pipe
                 elif chars == "P":
-                    newPipe = Pipe(self.screen, self.settings)
-                    newPipe.rect.x, newPipe.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    new_pipe = Pipe(self.screen, self.settings)
+                    new_pipe.rect.x, new_pipe.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
-                    pipes.add(newPipe)
+                    pipes.add(new_pipe)
                 #  Blank space
                 elif chars == "X":
                     self.xShift += size
                 #  ? block
                 elif chars == "?":
-                    newBrick = Block(self.screen, self.settings, 6)
-                    newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    new_brick = Block(self.screen, self.settings, 6)
+                    new_brick.rect.x, new_brick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
-                    blocks.add(newBrick)
+                    blocks.add(new_brick)
                 #  Mushroom blocks (look like ? blocks):
                 elif chars == "M":
-                    newBrick = Block(self.screen, self.settings, 6, 0, 1)
-                    newBrick.rect.x, newBrick.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    new_brick = Block(self.screen, self.settings, 6, 0, 1)
+                    new_brick.rect.x, new_brick.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
-                    blocks.add(newBrick)
+                    blocks.add(new_brick)
                 #  Invisible walls
                 elif chars == "I":
-                    newInvis = Block(self.screen, self.settings, 8, 0, 1)
-                    newInvis.rect.x, newInvis.rect.y = self.xShift + size / 4, self.yShift + size / 4
+                    new_invis = Block(self.screen, self.settings, 8, 0, 1)
+                    new_invis.rect.x, new_invis.rect.y = self.xShift + size / 4, self.yShift + size / 4
                     self.xShift += size
-                    invis.add(newInvis)
+                    invis.add(new_invis)
 
                 #  Goombas
                 elif chars == "G":
-                    newGoomba = Goomba(self.screen, self.settings)
-                    newGoomba.rect.x, newGoomba.rect.y = self.xShift + size / 4, self.yShift - size / 10
+                    new_goomba = Goomba(self.screen, self.settings)
+                    new_goomba.rect.x, new_goomba.rect.y = self.xShift + size / 4, self.yShift - size / 10
                     self.xShift += size
-                    goombas.add(newGoomba)
+                    goombas.add(new_goomba)
                 elif chars == "K":
-                    newKoopa = Koopa(self.screen, self.settings)
-                    newKoopa.rect.x, newKoopa.rect.y = self.xShift + size / 4, self.yShift - size / 10
+                    new_koopa = Koopa(self.screen, self.settings)
+                    new_koopa.rect.x, new_koopa.rect.y = self.xShift + size / 4, self.yShift - size / 10
                     self.xShift += size
-                    koopa.add(newKoopa)
+                    koopa.add(new_koopa)
 
             self.xShift = 0
             self.yShift += size
         print("Done.")
 
-    def drawMap(self, floors, blocks, pipes, goombas, invisG, koopas):
+    @staticmethod
+    def draw_map(floors, blocks, pipes, goombas, invis_g, koopas):
         for floor in floors:
             floor.blit()
         for block in blocks:
@@ -186,15 +187,16 @@ class BuildMap():
         for pipe in pipes:
             pipe.blit()
         for goomba in goombas:
-            goomba.drawGoomba()
+            goomba.draw_goomba()
         for koopa in koopas:
-            koopa.drawKoopa()
-        for invis in invisG:
+            koopa.draw_koopa()
+        for invis in invis_g:
             invis.blit()
 
-    def shiftMap(self, floors, blocks, pipes, settings, goombas, invisG, koopas):
-        worldShift = 0
-        if settings.moving_right == True:
+    @staticmethod
+    def shift_map(floors, blocks, pipes, settings, goombas, invis_g, koopas):
+        # world_shift = 0
+        if settings.moving_right:
             for floor in floors:
                 floor.rect.x -= 1
             for block in blocks:
@@ -205,5 +207,5 @@ class BuildMap():
                 goomba.rect.x -= 1
             for koopa in koopas:
                 koopa.rect.x -= 1
-            for invis in invisG:
+            for invis in invis_g:
                 invis.rect.x -= 1

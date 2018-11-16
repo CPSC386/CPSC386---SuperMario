@@ -2,8 +2,8 @@ import pygame
 from pygame.sprite import Sprite
 
 
-class Block(Sprite): # item will default to -1 and quantity will default to 0 if nothing is passed when init
-    def __init__(self, screen, settings, skin, item = -1, quantity = 0):
+class Block(Sprite):  # item will default to -1 and quantity will default to 0 if nothing is passed when init
+    def __init__(self, screen, settings, skin, item=-1, quantity=0):
         super(Block, self).__init__()
         self.screen, self.settings = screen, settings
         self.skin = skin
@@ -28,14 +28,14 @@ class Block(Sprite): # item will default to -1 and quantity will default to 0 if
             self.image = pygame.image.load("images/1-2/surprise brick.png")
         elif skin == 8:
             self.image = pygame.image.load("images/1-1/sky.png")
-      #      self.image = self.image.convert_alpha()
-      #      self.image.set_alpha(0)
+            # self.image = self.image.convert_alpha()
+            # self.image.set_alpha(0)
 
         self.image = pygame.transform.scale(self.image, (settings.rectSize, settings.rectSize))
         self.rect = self.image.get_rect()
 
         if self.skin >= 4:
-            self.hitRect = pygame.Rect(0,0, settings.rectSize, settings.rectSize/6)
+            self.hitRect = pygame.Rect(0, 0, settings.rectSize, settings.rectSize/6)
             self.hitRect.x, self.hitRect.y = self.rect.x, self.rect.bottom + 20
 
     def update(self):
@@ -46,10 +46,9 @@ class Block(Sprite): # item will default to -1 and quantity will default to 0 if
                 self.skin = 2
                 self.image = pygame.image.load("images/1-1/now empty brick.png")
 
-
     def blit(self):
         self.screen.blit(self.image, self.rect)
 
-        if self.skin >= 4: # this is here for future Collisions to ge items to pop out
+        if self.skin >= 4:  # this is here for future Collisions to ge items to pop out
             self.hitRect.x, self.hitRect.y = self.rect.x, self.rect.bottom
-            pygame.draw.rect(self.screen, (0,0,0), self.hitRect)
+            pygame.draw.rect(self.screen, (0, 0, 0), self.hitRect)

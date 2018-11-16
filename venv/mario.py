@@ -15,7 +15,10 @@ class Mario:
         self.collideBottom = False
         self.collideTop = False
 
-        self.image = [pygame.image.load("images/mario/mario/right1.png"), pygame.image.load("images/mario/mario/right2.png"), pygame.image.load("images/mario/mario/right3.png"), pygame.image.load("images/mario/mario/right4.png")]
+        self.image = [pygame.image.load("images/mario/mario/right1.png"),
+                      pygame.image.load("images/mario/mario/right2.png"),
+                      pygame.image.load("images/mario/mario/right3.png"),
+                      pygame.image.load("images/mario/mario/right4.png")]
         for i in range(len(self.image)):
             self.image[i] = pygame.transform.scale(self.image[i], (40, 50))
 
@@ -23,18 +26,17 @@ class Mario:
         self.x, self.y = 100, self.settings.screenHeight - self.rect.bottom - 200
         self.rect.x, self.rect.y = self.x, self.y
 
-    def updatePlayer(self):
-        if self.collideBottom == False:
+    def update_player(self):
+        if not self.collideBottom:
             self.y += self.settings.playerSpeed * 2
-        if self.movementLeft == True and self.collideLeft == False: # If left arrow key is pressed and not touching block to the left
+        if self.movementLeft and not self.collideLeft:  # If left key is pressed and not touching block to the left
             self.x -= self.settings.playerSpeed
-        if self.movementRight == True and self.collideRight == False:# If right arrow key is pressed and not touching block to the right
+        if self.movementRight and not self.collideRight:  # If right key is pressed and not touching block to the right
             self.x += self.settings.playerSpeed
 
         self.rect.x, self.rect.y = self.x, self.y
 
-
-    def drawPlayer(self):
+    def draw_player(self):
         if pygame.time.get_ticks() % 1200 < 300:
             # self.rect = self.image[0].get_rect()
             self.screen.blit(self.image[0], self.rect)
